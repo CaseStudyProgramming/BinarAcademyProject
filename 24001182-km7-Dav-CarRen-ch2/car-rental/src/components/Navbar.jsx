@@ -1,34 +1,46 @@
 import { useState, useEffect, useRef } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { useNavigate, useLocation } from "react-router-dom"; // Import hooks untuk navigasi
+import imageLogo from "../assets/image-removebg-preview.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [navbarHeight, setNavbarHeight] = useState(0); // State untuk menyimpan tinggi navbar
-  const navbarRef = useRef(null); // Ref untuk referensi ke navbar
+  const [navbarHeight, setNavbarHeight] = useState(0);
+  const navbarRef = useRef(null);
+
+  const navigate = useNavigate(); // Hook untuk navigasi
+  const location = useLocation(); // Hook untuk mengetahui lokasi path saat ini
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
-      // Disable scrolling
       document.body.style.overflow = "hidden";
     } else {
-      // Enable scrolling
       document.body.style.overflow = "auto";
     }
   };
 
-  // Fungsi untuk scroll ke bagian tertentu
   const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false); // tutup menu setelah klik di mobile
-      document.body.style.overflow = "auto"; // Pastikan scroll diaktifkan
+    if (location.pathname !== "/") {
+      navigate("/"); // Navigasi ke root path sebelum scroll
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100); // Delay untuk memastikan navigasi selesai
+    } else {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
     }
+    setIsOpen(false);
+    document.body.style.overflow = "auto";
   };
 
-  // Deteksi scroll untuk menambah class 'scrolled'
+  // Menangani scroll untuk efek navbar
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -40,14 +52,13 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up event listener saat komponen unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.body.style.overflow = "auto";
     };
   }, []);
 
-  // Hitung tinggi navbar dan terapkan padding ke konten utama
+  // Hitung tinggi navbar untuk padding di konten
   useEffect(() => {
     const updateNavbarHeight = () => {
       if (navbarRef.current) {
@@ -65,20 +76,24 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar */}
       <nav
         ref={navbarRef}
         className={`fixed w-full z-50 transition-all duration-100 ${
           isScrolled && !isOpen
-            ? "bg-[#F1F3FF]/80 shadow-md backdrop-blur-md" // Blur saat scroll dan hamburger menu tidak terbuka
+            ? "bg-[#F1F3FF]/80 shadow-md backdrop-blur-md"
             : "bg-[#F1F3FF]"
         } py-4 px-10`}
       >
         <div className="container mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold text-blue-900 ml-2 md:ml-14">
-            LOGO
+          <div className="ml-2 md:ml-14">
+            <img
+              src={imageLogo}
+              alt="Logo"
+              className="h-10 w-auto cursor-pointer"
+              onClick={() => navigate("/")} // Logo mengarah ke root path
+            />
           </div>
-          <div className="flex items-center space-x-6 ">
+          <div className="flex items-center space-x-6">
             <div className="hidden md:flex space-x-6">
               <button
                 onClick={() => scrollToSection("ourservices")}
@@ -118,20 +133,17 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Overlay when menu is open */}
         {isOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-[60]" // Update z-index
+            className="fixed inset-0 bg-black bg-opacity-50 z-[60]"
             onClick={toggleMenu}
           />
         )}
 
-        {/* Sidebar for Mobile */}
         <div
           className={`fixed top-0 right-0 w-64 h-full bg-white z-[70] transform transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           } md:hidden shadow-lg`}
-          style={{ backgroundColor: "#FFFFFF" }} // Pastikan background solid
         >
           <button
             onClick={toggleMenu}
@@ -181,7 +193,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <main style={{ paddingTop: `${navbarHeight}px` }}>
         {/* Konten utama di sini */}
       </main>

@@ -8,7 +8,7 @@ export const fetchCarData = async () => {
     const data = await response.json();
 
     // Log fetched data for debugging
-    console.log("Car data fetched:", data);
+    // console.log("Car data fetched:", data);
 
     return data;
   } catch (error) {

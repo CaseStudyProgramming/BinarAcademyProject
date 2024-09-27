@@ -1,4 +1,3 @@
-// src/components/Hero.jsx
 import carImage from "../../assets/img_car.png";
 
 const Hero = () => {

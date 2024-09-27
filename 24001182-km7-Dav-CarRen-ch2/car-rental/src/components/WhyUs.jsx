@@ -54,7 +54,6 @@ const WhyUs = () => {
           >
             <div
               className={`md:h-20 md:w-20  h-14 w-14 rounded-full ${service.bgColor} mb-4 flex items-center justify-center`}
-              size
             >
               {service.icon}
             </div>

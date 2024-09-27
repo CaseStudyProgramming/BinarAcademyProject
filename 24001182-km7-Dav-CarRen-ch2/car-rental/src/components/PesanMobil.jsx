@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom"; // Impor useNavigate
+
 const PesanMobil = () => {
+  const navigate = useNavigate(); // Hook untuk navigasi
+
+  const handleClick = () => {
+    navigate("/carimobil"); // Navigasi ke halaman Carimobil
+  };
   return (
     <section className="py-10 bg-white">
       <div className="max-w-7xl lg:max-w-full mx-auto px-4 ">
@@ -11,7 +18,10 @@ const PesanMobil = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <button className="bg-[#5CB85F] text-white px-4 py-4 mt-4 lg:mt-8 rounded-lg">
+          <button
+            onClick={handleClick}
+            className="bg-[#5CB85F] text-white px-4 py-4 mt-4 lg:mt-8 rounded-lg"
+          >
             Mulai Sewa Mobil
           </button>
         </div>

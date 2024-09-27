@@ -15,7 +15,7 @@ function Carimobil() {
     const loadData = async () => {
       const data = await fetchCarData();
       if (data) {
-        console.log("Fetched car data:", data);
+        // console.log("Fetched car data:", data);
         setCarData(data);
       }
     };
@@ -26,33 +26,32 @@ function Carimobil() {
   const [waktu, setWaktu] = useState("");
 
   const handleSearch = ({ tipeDriver, tanggal, waktu, penumpang }) => {
-    // Simpan tipeDriver dan waktu jemput
     setTipeDriver(tipeDriver);
     setWaktu(waktu);
 
     const formattedDate = new Date(`${tanggal}T${waktu}`).toISOString();
-    console.log("Formatted date for filtering:", formattedDate);
+    // console.log("Formatted date for filtering:", formattedDate);
 
     const filtered = carData.filter((car) => {
-      const isAvailable = car.available; // Ensure this property exists
+      const isAvailable = car.available;
       const hasEnoughCapacity =
         penumpang === "" || car.capacity >= parseInt(penumpang, 10);
       const isAvailableOnDate =
         new Date(car.availableAt) <= new Date(formattedDate);
 
-      console.log("Car availableAt:", car.availableAt);
-      console.log("Formatted user input date:", formattedDate);
-      console.log("isAvailableOnDate:", isAvailableOnDate);
+      // console.log("Car availableAt:", car.availableAt);
+      // console.log("Formatted user input date:", formattedDate);
+      // console.log("isAvailableOnDate:", isAvailableOnDate);
 
       const matchesDriverType =
         tipeDriver === "" ||
         tipeDriver === "Dengan Driver" ||
         tipeDriver === "Tanpa Driver";
 
-      console.log("Car being checked:", car);
-      console.log("isAvailableOnDate:", isAvailableOnDate);
-      console.log("hasEnoughCapacity:", hasEnoughCapacity);
-      console.log("matchesDriverType:", matchesDriverType);
+      // console.log("Car being checked:", car);
+      // console.log("isAvailableOnDate:", isAvailableOnDate);
+      // console.log("hasEnoughCapacity:", hasEnoughCapacity);
+      // console.log("matchesDriverType:", matchesDriverType);
 
       return (
         isAvailable &&
@@ -62,7 +61,7 @@ function Carimobil() {
       );
     });
 
-    console.log("Filtered cars:", filtered);
+    // console.log("Filtered cars:", filtered);
     setFilteredCars(filtered);
     setShowCarGrid(true);
   };

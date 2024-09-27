@@ -1,32 +1,29 @@
-//carimobilmenu.jsx
 import React, { useState } from "react";
 
 const CariMobilMenu = ({ onSearch }) => {
-  // State untuk input form
   const [tipeDriver, setTipeDriver] = useState("");
   const [tanggal, setTanggal] = useState("");
   const [waktu, setWaktu] = useState("");
   const [penumpang, setPenumpang] = useState("");
 
-  // Cek apakah semua input sudah terisi
   const isFormValid = tipeDriver && tanggal && waktu && penumpang;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form data:", { tipeDriver, tanggal, waktu, penumpang }); // Log form data
+    // console.log("Form data:", { tipeDriver, tanggal, waktu, penumpang });
     onSearch({
       tipeDriver,
       tanggal,
       waktu,
-      penumpang: parseInt(penumpang, 10), // Ensure it's an integer
+      penumpang: parseInt(penumpang, 10),
     });
   };
 
   return (
     <div className="relative flex justify-center -mt-16">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-6xl z-10">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full mx-4 max-w-6xl z-10">
         <form
-          className="grid grid-cols-1 sm:grid-cols-5 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4"
           onSubmit={handleSubmit}
         >
           {/* Tipe Driver */}
@@ -62,7 +59,7 @@ const CariMobilMenu = ({ onSearch }) => {
               type="date"
               id="tanggal"
               name="tanggal"
-              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="block w-full px-3 py-2 border mt-1 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               value={tanggal}
               onChange={(e) => setTanggal(e.target.value)}
             />
@@ -80,7 +77,7 @@ const CariMobilMenu = ({ onSearch }) => {
               type="time"
               id="waktu"
               name="waktu"
-              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="block w-full px-3 py-2 border mt-1 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               value={waktu}
               onChange={(e) => setWaktu(e.target.value)}
             />
@@ -92,21 +89,22 @@ const CariMobilMenu = ({ onSearch }) => {
               htmlFor="penumpang"
               className="block text-sm font-medium text-gray-700"
             >
-              Jumlah Penumpang (optional)
+              Jumlah Penumpang
             </label>
             <input
               type="number"
               id="penumpang"
               name="penumpang"
-              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="block w-full px-3 py-2 border mt-1 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Jumlah Penumpang"
               value={penumpang}
               onChange={(e) => setPenumpang(e.target.value)}
+              min={1}
             />
           </div>
 
           {/* Cari Mobil Button */}
-          <div className="col-span-1 flex items-end">
+          <div className="col-span-1 sm:col-span-2 md:col-span-4 xl:col-span-1 xl:col-start-5 flex items-end justify-end mt-4 xl:mt-0">
             <button
               type="submit"
               className={`w-full bg-green-500 text-white font-bold py-2 px-4 rounded-md ${
@@ -114,7 +112,7 @@ const CariMobilMenu = ({ onSearch }) => {
                   ? "opacity-50 cursor-not-allowed"
                   : "hover:bg-green-600"
               }`}
-              disabled={!isFormValid} // Disable tombol jika form tidak valid
+              disabled={!isFormValid}
             >
               Cari Mobil
             </button>
