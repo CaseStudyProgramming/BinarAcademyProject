@@ -2,7 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const dataPath = path.join(__dirname, "../../public/data/cars.json");
+const dataPath = path.join(process.cwd(), "public/data/cars.json");
 
 const readData = () => {
   const jsonData = fs.readFileSync(dataPath, "utf-8");
