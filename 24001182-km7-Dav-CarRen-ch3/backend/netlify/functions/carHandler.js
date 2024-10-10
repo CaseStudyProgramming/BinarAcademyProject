@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(fileUpload());
 
 // Menggunakan rute yang sudah dibuat
-app.use("//api", carRoutes);
+app.use("/api", carRoutes);
 app.use(errorHandler);
 
 module.exports.handler = serverless(app);
