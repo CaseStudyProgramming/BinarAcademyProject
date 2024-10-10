@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"  # Lokasi fungsi serverless
+  publish = "public"               # Direktori untuk file publik
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/carHandler"
+  status = 200

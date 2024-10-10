@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "netlify-local": "netlify dev"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "express": "^4.21.0",
     "express-fileupload": "^1.5.1",
     "imagekit": "^5.2.0",
+    "serverless-http": "^3.2.0",
     "uuid": "^10.0.0"
   }
 }
