@@ -1,7 +1,8 @@
 [build]
-  base = "24001182-km7-Dav-CarRen-ch3/backend"
+  base = "24001182-km7-Dav-CarRen-ch3/backend"  # Make sure this path is correct
   command = "npm install"
-  publish = "public"
+  # Remove the publish line if you're not serving static files
+  # publish = "public"  # Remove or comment this line if not needed
 
 [functions]
   directory = "netlify/functions"
