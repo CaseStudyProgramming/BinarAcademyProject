@@ -1,6 +1,10 @@
 [build]
-  functions = "netlify/functions"  # Lokasi fungsi serverless
-  publish = "public"               # Direktori untuk file publik
+  base = "24001182-km7-Dav-CarRen-ch3/backend"
+  command = "npm install"
+  publish = "public"
+
+[functions]
+  directory = "netlify/functions"
 
 [[redirects]]
   from = "/api/*"
