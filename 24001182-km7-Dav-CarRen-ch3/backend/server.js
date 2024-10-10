@@ -1,4 +1,4 @@
-// server.js or at the top of your main app file
+// root/server.js
 require("dotenv").config();
 
 const app = require("./src/apps/app");

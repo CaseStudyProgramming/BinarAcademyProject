@@ -1,4 +1,4 @@
-// src/utils/fileUtils.js
+// root/src/utils/fileUtils.js
 const fs = require("fs");
 const path = require("path");
 

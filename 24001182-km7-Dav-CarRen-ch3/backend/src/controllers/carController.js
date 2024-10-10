@@ -1,4 +1,4 @@
-// src/controllers/carController.js
+// root/src/controllers/carController.js
 const carService = require("../services/carService");
 const imagekit = require("../configs/imageKit");
 

@@ -1,4 +1,4 @@
-// src/apps/app.js
+// root/src/apps/app.js
 const express = require("express");
 const fileUpload = require("express-fileupload"); // New import
 const carRoutes = require("../routers/carRoutes");
