@@ -9,8 +9,10 @@ exports.ping = (req, res) => {
 exports.getAllCars = (req, res, next) => {
   try {
     const cars = carService.getAllCars();
+    console.log(cars); // Log to check what is being returned
     res.json(cars);
   } catch (error) {
+    console.error(error); // Log the error
     next({ status: 500, message: "Failed to retrieve cars" });
   }
 };

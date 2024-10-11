@@ -5,8 +5,11 @@ const { v4: uuidv4 } = require("uuid");
 class CarRepository {
   getAllCars() {
     try {
-      return readData();
+      const cars = readData();
+      console.log(cars); // Log data from cars.json
+      return cars;
     } catch (error) {
+      console.error("Error fetching cars:", error);
       throw new Error("Could not retrieve cars");
     }
   }
