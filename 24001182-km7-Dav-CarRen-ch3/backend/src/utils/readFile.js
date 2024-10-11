@@ -1,7 +1,8 @@
-const path = require("path");
+// src/utils/fileUtils.js
 const fs = require("fs");
+const path = require("path");
 
-const dataPath = path.join(__dirname, "../../netlify/functions/data/cars.json");
+const dataPath = path.join(__dirname, "../../public/data/cars.json");
 
 const readData = () => {
   const jsonData = fs.readFileSync(dataPath, "utf-8");
@@ -9,7 +10,7 @@ const readData = () => {
 };
 
 const writeData = (data) => {
-  fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), "utf-8");
+  fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
 };
 
 module.exports = { readData, writeData };

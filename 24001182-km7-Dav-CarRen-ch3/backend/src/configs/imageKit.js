@@ -1,4 +1,3 @@
-// root/src/configs/imageKit
 const ImageKit = require("imagekit");
 
 const imagekit = new ImageKit({

@@ -1,4 +1,4 @@
-// root/src/routers/carRoutes.js
+// src/routers/carRoutes.js
 const express = require("express");
 const router = express.Router();
 const carController = require("../controllers/carController");

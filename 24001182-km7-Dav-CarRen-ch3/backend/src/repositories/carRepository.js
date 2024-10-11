@@ -1,15 +1,12 @@
-// root/src/repositories/carRepository.js
+// src/repositories/carRepository.js
 const { readData, writeData } = require("../utils/readFile");
 const { v4: uuidv4 } = require("uuid");
 
 class CarRepository {
   getAllCars() {
     try {
-      const cars = readData();
-      console.log(cars); // Log data from cars.json
-      return cars;
+      return readData();
     } catch (error) {
-      console.error("Error fetching cars:", error);
       throw new Error("Could not retrieve cars");
     }
   }
